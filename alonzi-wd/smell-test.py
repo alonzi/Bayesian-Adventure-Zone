@@ -4,6 +4,12 @@
 # https://github.com/alonzi/Bayesian-Adventure-Zone
 # coding practice
 
+#
+##
+### NB: this is quick and dirty, don't use this form, if you don't liek it, pull request it
+##
+#
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

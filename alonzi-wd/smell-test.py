@@ -19,13 +19,20 @@ import matplotlib.pyplot as plt
 rolls = pd.read_csv('../TravisRollsDataset.csv')          # read in to data frame
 print(f'There are {len(rolls)} rolls in this dataset.')   # print out size of initial dataset
 rolls = rolls[rolls['adv'].isna()]                        # drop advantage/disadvantage
-rolls['d20'] = rolls['roll']-rolls['mod']                 # compute d20 roll
-print(f'There are {len(rolls)} rolls in this munged dataset.')   # print out size of remaining dataset
+rolls_attack = rolls[rolls['stat']=='ATTACK']                    # only attack rolls
+rolls_nonattack = rolls[rolls['stat']!='ATTACK']                    # only attack rolls
+print(f'There are {len(rolls_attack)} rolls in this munged attack roll dataset.')   # print out size of remaining dataset
+print(f'There are {len(rolls_nonattack)} rolls in this munged non-attack roll dataset.')   # print out size of remaining dataset
 
 
 
 # diagnostic plots
-rolls['d20'].plot.hist(bins=26,range=(-5,20),title='Travis d20 rolls')
+rolls_attack['roll'].plot.hist(bins=26,range=(-5,20),title='Travis d20 attack rolls')
+plt.show()
+
+rolls_nonattack['roll'].plot.hist(bins=26,range=(-5,20),title='Travis d20 non-attack rolls',color='orange')
+plt.show()
+
 
 # expected distribution
 sim_rolls = pd.DataFrame(np.random.randint(1,21,151))
